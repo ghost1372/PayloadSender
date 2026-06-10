@@ -10,7 +10,7 @@
   <Identity
     Name="34768MahdiHosseini.PayloadSender"
     Publisher="CN=EBE7C7BF-0B02-4AC9-AAE4-FC932096CBF0"
-    Version="1.0.0.0" />
+    Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="2374dfa0-5c7f-443a-b01e-bad6e277446e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
