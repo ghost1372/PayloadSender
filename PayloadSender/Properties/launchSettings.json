@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PayloadSender (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PayloadSender (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
