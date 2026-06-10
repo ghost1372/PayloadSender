@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <ComboBox HorizontalAlignment="Stretch" Header="IP Address" IsEditable="True" ItemsSource="{x:Bind ViewModel.AddressList, Mode=OneWay}" PlaceholderText="192.168.1.36" SelectedItem="{x:Bind ViewModel.SelectedAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <NumberBox x:Name="NBPort" Grid.Column="1" Header="Port" Maximum="999999" PlaceholderText="9021" SpinButtonPlacementMode="Inline" Value="9021" />
+            <NumberBox x:Name="NBPort" Grid.Column="1" MinWidth="180" Header="Port" Maximum="999999" PlaceholderText="9021" SpinButtonPlacementMode="Inline" Value="9021" />
             <TextBox x:Name="TxtPayloadFilePath" Grid.Row="2" Header="Payload File Path" IsReadOnly="True" />
             <Button x:Name="BtnOpenFile" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="BtnOpenFile_Click">
                 <StackPanel Orientation="Horizontal" Spacing="5">
