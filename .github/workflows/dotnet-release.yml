@@ -9,7 +9,7 @@ permissions:
 env:
   # Configuring Project
   PROJECT_PATH: PayloadSender/PayloadSender.csproj
-  APP_NAME: PayloadSender
+  APP_NAME: PayloadSender-Portable-AOT
   
   # Check Tag
   CHECK_TAG_EXISTENCE_BEFORE_CREATING_TAG: false
