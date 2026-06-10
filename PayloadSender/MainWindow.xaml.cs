@@ -80,7 +80,12 @@ public sealed partial class MainWindow : Window
     {
         var picker = new FileOpenPicker(AppWindow.Id);
         picker.FileTypeChoices.Add("All Files", new[] { "*" });
+        picker.FileTypeChoices.Add("Payload Files", new[] { ".js", ".elf", ".pkg", ".bin" });
         picker.FileTypeChoices.Add("ELF Files", new[] { ".elf" });
+        picker.FileTypeChoices.Add("JavaScript Files", new[] { ".js" });
+        picker.FileTypeChoices.Add("PKG Files", new[] { ".pkg" });
+        picker.FileTypeChoices.Add("Bin Files", new[] { ".bin" });
+        picker.Title = "Open Payload";
         picker.InitialFileTypeIndex = 1;
         var result = await picker.PickSingleFileAsync();
         if (result != null)
