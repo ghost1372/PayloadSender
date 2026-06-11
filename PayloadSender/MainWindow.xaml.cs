@@ -1,9 +1,8 @@
-﻿using System.Diagnostics;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Net.Sockets;
 using Microsoft.UI.Windowing;
 using Microsoft.Windows.Storage.Pickers;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 using Windows.System;
 using WinRT;
 
@@ -61,7 +60,7 @@ public sealed partial class MainWindow : Window
 
             await SendPayloadAsync(ViewModel.SelectedAddress.ToString(), (int)NBPort.Value, TxtPayloadFilePath.Text, progress, cts.Token);
 
-            IFStatus.Title = "Payload sent successfully.";
+            IFStatus.Title = $"{Path.GetFileName(TxtPayloadFilePath.Text)} Payload sent successfully.";
             IFStatus.Message = "";
             IFStatus.Severity = InfoBarSeverity.Success;
         }
@@ -78,6 +77,10 @@ public sealed partial class MainWindow : Window
 
     private async void BtnOpenFile_Click(object sender, RoutedEventArgs e)
     {
+        IFStatus.Title = "Please select your payload file and click Send Payload.";
+        IFStatus.Message = "";
+        IFStatus.Severity = InfoBarSeverity.Informational;
+
         var picker = new FileOpenPicker(AppWindow.Id);
         picker.FileTypeChoices.Add("All Files", new[] { "*" });
         picker.FileTypeChoices.Add("Payload Files", new[] { ".js", ".elf", ".pkg", ".bin" });
@@ -92,6 +95,7 @@ public sealed partial class MainWindow : Window
         {
             TxtPayloadFilePath.Text = result.Path;
             BtnSendPayload.IsEnabled = true;
+            IFStatus.Title = $"{Path.GetFileName(result.Path)} selected.";
         }
     }
 
@@ -135,6 +139,38 @@ public sealed partial class MainWindow : Window
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
         await Launcher.LaunchUriAsync(new Uri("http://github.com/ghost1372/PayloadSender"));
+    }
+
+    private async void Grid_Drop(object sender, DragEventArgs e)
+    {
+        if (e.DataView.Contains(StandardDataFormats.StorageItems))
+        {
+            var items = await e.DataView.GetStorageItemsAsync();
+
+            if (items.Count > 0)
+            {
+                var file = items[0] as StorageFile;
+
+                if (file != null)
+                {
+                    IFStatus.Title = $"{file.Name} selected.";
+                    IFStatus.Message = "";
+                    IFStatus.Severity = InfoBarSeverity.Informational;
+
+                    TxtPayloadFilePath.Text = file.Path;
+
+                    BtnSendPayload.IsEnabled = true;
+                }
+            }
+        }
+    }
+
+    private void Grid_DragOver(object sender, DragEventArgs e)
+    {
+        e.AcceptedOperation = DataPackageOperation.Copy;
+        e.DragUIOverride.Caption = "Drop file here";
+        e.DragUIOverride.IsCaptionVisible = true;
+        e.DragUIOverride.IsContentVisible = true;
     }
 }
 

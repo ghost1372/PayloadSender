@@ -7,7 +7,7 @@
         xmlns:local="using:PayloadSender"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d">
-    <Grid>
+    <Grid AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -22,7 +22,7 @@
                 </Button>
             </TitleBar.RightHeader>
         </TitleBar>
-        <Grid Grid.Row="1" Margin="10,15,10,10" ColumnSpacing="5" RowSpacing="10">
+        <Grid Grid.Row="1" Margin="10,15,10,10" AllowDrop="True" ColumnSpacing="5" RowSpacing="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -48,7 +48,7 @@
             <NavigationViewItemSeparator Grid.Row="3" Grid.ColumnSpan="2" />
             <Button x:Name="BtnSendPayload" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Click="BtnSendPayload_Click" Content="Send Payload" IsEnabled="False" Style="{ThemeResource AccentButtonStyle}" />
             <dev:StorageBar x:Name="PrgStatus" Grid.Row="5" Grid.ColumnSpan="2" Maximum="100" PercentCaution="10001" PercentCritical="10001" Visibility="Collapsed" Value="0" />
-            <InfoBar x:Name="IFStatus" Title="Please open your payload file and click Send Payload." Grid.Row="6" Grid.ColumnSpan="2" IsClosable="False" IsOpen="True" />
+            <InfoBar x:Name="IFStatus" Title="Please select your payload file and click Send Payload." Grid.Row="6" Grid.ColumnSpan="2" IsClosable="False" IsOpen="True" />
         </Grid>
     </Grid>
 </Window>
