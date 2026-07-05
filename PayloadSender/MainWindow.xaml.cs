@@ -27,7 +27,7 @@ public sealed partial class MainWindow : Window
         presenter.IsAlwaysOnTop = true;
         var manager = new WindowManager(this);
         manager.Width = 600;
-        manager.Height = 360;
+        manager.Height = 400;
     }
 
     private async void BtnSendPayload_Click(object sender, RoutedEventArgs e)
